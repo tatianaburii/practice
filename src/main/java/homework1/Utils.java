@@ -27,7 +27,8 @@ public class Utils {
             .filter(w -> w.startsWith("#"))
             .distinct()
             .collect(Collectors.toList()))
-        .flatMap(List::stream).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        .flatMap(List::stream)
+        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
     return map.entrySet().stream()
         .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))

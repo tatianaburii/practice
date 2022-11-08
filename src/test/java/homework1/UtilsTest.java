@@ -13,9 +13,9 @@ public class UtilsTest {
   void findHashtags_ReturnsFiveTheMostPopularWords() {
     String s1 = "#one";
     String s2 = "#one #two #three";
-    String s3 = "#one #two #three ";
-    String s4 = "#one #two #three #four ";
-    String s5 = "#one #two #three #four #five ";
+    String s3 = "#one #two #three";
+    String s4 = "#one #two #three #four";
+    String s5 = "#one #two #three #four #five #five #five";
     String s6 = "#one #two #three #four #five #six";
     String s7 = "#one #two #three #four #five #six #seven #seven #seven #seven #seven #seven #seven";
 
@@ -28,6 +28,9 @@ public class UtilsTest {
     assertThat(result.get("#four")).isNotNull();
     assertThat(result.get("#five")).isNotNull();
     assertThat(result.get("#six")).isNull();
+    assertThat(result.get("#one")).isEqualTo(7);
+    assertThat(result.get("#five")).isEqualTo(3);
+
   }
 
   @Test
