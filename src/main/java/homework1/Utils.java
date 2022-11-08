@@ -28,7 +28,9 @@ public class Utils {
             .collect(Collectors.toList()))
         .flatMap(List::stream).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-    return map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(5)
+    return map.entrySet().stream()
+        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        .limit(5)
         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
   }
 
