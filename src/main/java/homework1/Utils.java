@@ -22,7 +22,8 @@ public class Utils {
   }
 
   public static Map<String, Long> findHashtags(List<String> strings) {
-    Map<String, Long> map = strings.stream().map(s -> Arrays.stream(s.split(" "))
+    Map<String, Long> map = strings.stream()
+        .map(s -> Arrays.stream(s.split(" "))
             .filter(w -> w.startsWith("#"))
             .distinct()
             .collect(Collectors.toList()))
