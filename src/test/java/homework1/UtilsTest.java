@@ -4,6 +4,7 @@ import homework1.shapes.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -20,13 +21,13 @@ public class UtilsTest {
 
     List<String> strings = List.of(s1, s2, s3, s4, s5, s6, s7);
 
-    List<String> result = Utils.findHashtags(strings);
-    assertThat(result.contains("#one")).isTrue();
-    assertThat(result.contains("#two")).isTrue();
-    assertThat(result.contains("#three")).isTrue();
-    assertThat(result.contains("#four")).isTrue();
-    assertThat(result.contains("#five")).isTrue();
-
+    Map<String, Long> result = Utils.findHashtags(strings);
+    assertThat(result.get("#one")).isNotNull();
+    assertThat(result.get("#two")).isNotNull();
+    assertThat(result.get("#three")).isNotNull();
+    assertThat(result.get("#four")).isNotNull();
+    assertThat(result.get("#five")).isNotNull();
+    assertThat(result.get("#six")).isNull();
   }
 
   @Test
