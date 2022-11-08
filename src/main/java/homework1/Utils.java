@@ -21,15 +21,15 @@ public class Utils {
         .toArray();
   }
 
-  public static List<String> findHashtags(List<String> strings) {
+  public static Map<String, Long> findHashtags(List<String> strings) {
     Map<String, Long> map = strings.stream().map(s -> Arrays.stream(s.split(" "))
             .filter(w -> w.startsWith("#"))
             .distinct()
             .collect(Collectors.toList()))
         .flatMap(List::stream).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-    List<Long> entries = map.values().stream().sorted(Collections.reverseOrder()).limit(5).toList();
-    return map.keySet().stream().filter(k -> entries.contains(map.get(k))).toList();
+    return map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(5)
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
   }
 
   public static List<Shape> sortByVolume(List<Shape> shapes) {
